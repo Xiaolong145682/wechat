@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <title>登录页面</title>
+  <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+  <style>
+    .heads {
+      font-size: 30px;
+      height: 50px;
+      line-height: 30px;
+      color: rgba(9, 232, 150, 0.7);
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .f {
+      margin-top: 30px;
+      margin-left: 0px;
+      border: 1px solid green;
+      background-color: rgba(9, 232, 150, 0.5);
+      padding: 30px;
+      border-radius: 5px;
+      box-shadow: 1px 2px 3px gray;
+    }
+
+    @media (min-width: 768px) {
+      .col-sm-offset-2 {
+        margin-left: 10%;
+      }
+      .col-sm-2 {
+        width: 10%;
+      }
+      .col-sm-10 {
+        width: 82%;
+      }
+      #zhuce{
+        margin-left: 10%;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="container ">
+    <div class="heads">欢迎登录Wechat!</div>
+    <div class="f">
+
+    <form class="form-horizontal " method="post" action="/abc">
+      <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">昵称</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputEmail3" placeholder="昵称" required name="nick">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+        <div class="col-sm-10">
+          <input maxlength="16" type="password" class="form-control inputs" id="inputPassword3" placeholder="Password" required name="passwd">
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <div class="checkbox">
+            <label>
+          <input type="checkbox"> 记住密码
+        </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" id="sub" class="btn btn-default">登录</button>
+
+        </div>
+      </div>
+    </form>
+    <form action="/zhuce" method="post">
+      <button id="zhuce" class="btn btn-default" 　>注册</button>
+
+    </form>
+    </div>
+  </div>
+  <script type="text/javascript">
+    var zhuce = document.querySelector("#zhuce");
+    var sub = document.querySelector("#sub");
+    var inputs = document.querySelector(".inputs");
+
+
+    console.log(sub);
+
+    sub.addEventListener("click",function(event){
+      console.log(inputs.value.length);
+      if(inputs.value.length < 8){
+        alert("请输入8到16为的密码");
+        event.preventDefault();
+      }
+    },false);
+
+    // zhuce.addEventListener("click", function(event) {
+    //   event.preventDefault();
+    //   console.log(".....");
+    //   $.ajax({
+    //     url: '/zhuce',
+    //     type: 'post',
+    //     timeout: 5000,
+    //     success: function(data) {
+    //       //var data = $.parseJSON(data);
+    //       //  console.log(data);
+    //       //alert(data.title);
+    //       // $("#scc").text(data.title);
+    //     },
+    //     error: function(jqXHR, textStatus, errorThrown) {
+    //       alert('Error' + textStatus + errorThrown);
+    //     }
+    //   });
+    // });
+  </script>
+</body>
+
+</html>

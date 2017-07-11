@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.bootcss.com/jquery-mobile/1.4.5/jquery.mobile.css" rel="stylesheet">
+  <script src="https://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/jquery-mobile/1.4.5/jquery.mobile.min.js"></script>
+  <title>jQuery Mobile</title>
+  <style media="screen">
+
+</style>
+</head>
+
+<body>
+  <div data-role='page' id="pageone">
+    <div data-role="header" data-iconpos="left" data-position="fixed">
+      <!-- <a href="http://127.0.0.1:3000/" method="get" data-role="button" data-icon="back"  data-theme="a" data-inline="true">back</a> -->
+      <h1>修改密码</h1></div>
+
+      <div role="main">
+    <div data-role="content">
+      <form method="post" action="/gm">
+        <label for="fname">昵称：　<span id="sp1"><%= title %></span></label>
+        <input type="text" name="nick" placeholder="请输入您的昵称">
+        <label for="fname">新密码：</label>
+        <input type="password" name="password" placeholder="请输入新的密码">
+
+        <input type="submit" data-inline="false" value="点击修改">
+      </form>
+    </div>
+  </div>
+<!--
+    <div data-role="footer" data-position="fixed">
+      <a href="#" data-role="button">按钮1</a>
+    </div> -->
+
+  </div>
+  <script type="text/javascript">
+    var inputs = document.querySelectorAll("input");
+    var data1 = "";
+    var data2 = "";
+    console.log(inputs);
+    inputs[2].onclick = function(event){
+       data1 = inputs[0].value;
+       console.log(data1)
+       data2 = inputs[1].value;
+       if( (data1 === "") || (data2 === "")){
+         alert("昵称或密码为空!");
+         event.preventDefault();
+       }
+
+
+    };
+  </script>
+</body>
+
+</html>

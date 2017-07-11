@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>jQuery Mobile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+  <style media="screen">
+  ul li {
+    list-style: none;
+    float: left;
+    margin-left: 5%;
+    margin-right: 6%;
+  }
+  .uls li a{
+    text-decoration: none;
+    color:#000000;
+    margin-left: 0px;
+
+  }
+  .uls li a:hover{
+    color:#d0054b;
+  }
+  span{
+      color:red;
+      margin-left: 40px;
+    }
+    #sp2{
+      visibility: hidden;
+    }
+    .header{
+      width:100%;
+      text-align:center;
+      position: fixed;
+      top:40px;
+      color: #10b597;
+    }
+    .forms{
+      margin-top: 150px;
+      padding:0 5%;
+    }
+    .forms form{
+      color: #10b597;
+
+    }
+    .forms form input{
+      font-size: 16px;
+      width:80%;
+      height:25px;
+      margin-left: 5px;
+      border:1px solid #10b597;
+      border-radius: 3px;
+
+    }
+    .forms form input.sub1{
+      margin-left: 38px;
+      background-color: #10b597;
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+
+    <div class="header">
+      <h1>欢迎登录WeChat</h1></div>
+        <div role="main">
+      <div class="forms">
+        <form method="post" action="/abc">
+          <span id="sp1"><%= title %></span><br>
+          昵称<input type="text" name="nick" id="fname" placeholder="请输入您的昵称"><br><br>
+
+          密码<input type="password" name="password" id="fname" placeholder="请输入您的密码"><br>
+            <span id="sp2">密码不得少于六位！</span><br>
+          <input class="sub1" type="submit" value="登录">
+        </form>
+
+      </div>
+
+        <div>
+          <ul class="uls">
+            <li><a href="/xiugai">忘记密码</a></li>
+            <li><a href="/zhuce">没有帐号立即注册</a></li>
+          </ul>
+        </div>
+
+
+
+    </div>
+
+
+  </div>
+  <script type="text/javascript">
+  var inputs = document.querySelectorAll("input");
+  var sp2 = document.querySelector("#sp2");
+  var data1 = "";
+  var data2 = "";
+  console.log(inputs);
+  inputs[2].onclick = function(event){
+     data1 = inputs[0].value;
+     console.log(data1);
+     data2 = inputs[1].value;
+     if( (data1 === "") || (data2 === "")){
+       alert("昵称或密码为空!");
+       event.preventDefault();
+     }else if(data2.length < 6){
+          sp2.style.visibility = "visible";
+          event.preventDefault();
+     }
+
+
+  };
+
+  </script>
+
+</body>
+
+</html>

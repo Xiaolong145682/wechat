@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.bootcss.com/jquery-mobile/1.4.5/jquery.mobile.css" rel="stylesheet">
+  <script src="https://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/jquery-mobile/1.4.5/jquery.mobile.min.js"></script>
+  <title>登录成功</title>
+
+</head>
+
+<body>
+  <div data-role='page' id="pageone">
+    <style media="screen">
+      #messages {
+
+        list-style: none;
+        position: relative;
+        padding: 5px;
+      }
+      #messages div {
+        width:100%;
+        margin-bottom: 5px;
+        padding-bottom: 1px;
+        position: relative;
+      }
+
+      #messages div .lis{
+        display: inline-block;
+        border: 1px solid #208652;
+        border-radius: 5px;
+        max-width:65%;
+        background-color: #22f9f9;
+
+      }
+
+      /*#messages div:last-child {
+        position: relative;
+        left: 100%;
+      }*/
+      form {
+        width: 100%;
+        position: fixed;
+        bottom:30px;
+      }
+    </style>
+    <div data-role="header" data-position="fixed">
+      <h1>群聊（<span id="spp"><%= title %></span>）<span id=sp1></span></h1></div>
+    <div id="join"></div>
+    <ul id="messages"></ul>
+
+    <div id="join"></div>
+    <ul id="messages"></ul>
+
+      <form class="form-horizontal ">
+        <div class="form-group">
+          <div class="col-sm-10">
+            <input type="text" id="inputEmail3" class="speaks" placeholder="请文明发言！" required name="text">
+          </div>
+        </div>
+      </form>
+
+
+    <div data-role="footer" data-position="fixed">
+      <div data-role="navbar" data-iconpos="left">
+        <ul>
+          <li><a href="#" id="sub" data-icon="home">send</a></li>
+
+          <li><a href="/home" data-icon="home">home</a></li>
+
+      </div>
+    </div>
+
+
+
+
+<!-- <script type="text/javascript">
+console.log("++++++++++++++++");
+  window.location = "localhost:3000/abc";
+  console.log("---------------------");
+</script> -->
+
+
+</div>
+    <script src="http://cdn.bootcss.com/socket.io/2.0.3/socket.io.js" charset="utf-8"></script>
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+      var sub = document.querySelector("#sub");
+      var nms ;
+      var siname = "";
+      console.log("111111");
+      var socket = io();
+      var names = "";
+      sub.onclick = function() {
+        names = $("#spp").html();
+        if($('#inputEmail3').val() !== ""){
+
+          socket.emit('chat message', $('#inputEmail3').val(), names);
+
+          $('#inputEmail3').val('');
+          return false;
+        }
+      };
+      socket.on("peoples",function(people){
+        $("#sp1").text(people+"人");
+      });
+      socket.on('return message', function(msg, name, id) {
+        console.log(name);
+        console.log(socket.id);
+        $("#messages div span.nms").click(function(){
+          siname = $(this).text();
+          console.log(siname);
+        });
+        $('#messages').append($("<div></div>").append($('<span class="nms">').text(name+":")));
+        $("#messages div:last").append($("<br>"));
+        $("#messages div:last").append($('<span class="lis"></span>').text(msg).append($("<i id='tubiao' class='fa fa-check' aria-hidden='true'></i>")));
+        $("#messages div:last").append($("<br>"));
+        if (socket.id === id) {
+          $("#messages div:last .nms").css({"position":"absolute","right":"0%"});
+          $("#messages div:last .lis").css({"position":"absolute","right":"0%","background-color":"lightgreen"});
+        }
+        // nms =document.querySelector(".nms");
+        // nms.onclick = function(){
+        //   console.log(this);
+        //
+        //   siname = $(this).html();
+        //   console.log(siname);
+        // }
+
+      });
+
+
+      socket.on('broadcast', function(msg) {
+        console.log('broadcast!');
+        $('#join').append('<p><strong>Welcome to ' + msg + ' !</strong></p>');
+        setTimeout(function() {
+          $("#join p").remove();
+        }, 3000);
+      });
+    </script>
+
+</body>
+
+</html>

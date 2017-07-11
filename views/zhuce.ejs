@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>jQuery Mobile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="https://cdn.bootcss.com/jquery-mobile/1.4.5/jquery.mobile.css" rel="stylesheet">
+  <link rel="stylesheet" href="stylesheets/zhuce.css" media="screen" title="no title">
+  <script src="https://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/jquery-mobile/1.4.5/jquery.mobile.min.js"></script>
+
+</head>
+
+<body>
+  <div data-role='page'>
+    <div data-role="header" data-position="fixed">
+      <!-- <a href="http://127.0.0.1:3000/" method="get">back</a> -->
+      <h1>注册</h1></div>
+
+    <div role="main">
+      <div data-role="content">
+        <form method="post" action="/ok">
+          <label for="fname">昵称：<span id="sp1" style="color:red"><%= title %></span></label>
+          <input type="text" name="nick" id="nick" placeholder="请输入您的昵称" required>
+          <label for="fname">手机：</label>
+          <input type="number" name="phone" maxlength="11"  placeholder="请输入您的手机号码" required>
+          <label for="fname">邮箱：</label>
+          <input type="email" name="eamil" placeholder="请填写您的邮箱" required>
+          <label for="fname">密码：</label>
+          <input type="password" name="password" placeholder="请输入您的密码" required>
+          <!-- <label><input type="checkbox" name="checkbox-0" />我以同意WeChat相关规定</label> -->
+
+
+
+
+          <input type="submit" data-inline="false" value="提交注册">
+
+        </form>
+      </div>
+
+    </div>
+
+    <!-- <div data-role="footer" data-position="fixed">
+      <div data-role="navbar" data-iconpos="left">
+        <ul>
+          <li><a href="#" data-icon="bars">聊天</a></li>
+          <li><a href="#" data-icon="star" class="ui-btn-active">联系人</a></li>
+          <li><a href="#" data-icon="home">群聊</a></li>
+        </ul>
+      </div>
+    </div>
+ -->
+
+  </div>
+
+
+  </div>
+
+
+
+  <script type="text/javascript">
+  // console.log($("#nick"));
+  // $().ready(function(){
+  //
+  //   $("#nick").on("change",function(){
+  //     console.log(("======="));
+  //   });
+  // });
+  </script>
+</body>
+
+</html>
